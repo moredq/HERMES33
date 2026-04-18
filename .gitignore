@@ -41,3 +41,32 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+### 👇 НОВЫЕ ПРАВИЛА ДЛЯ ВАШЕГО ПРОЕКТА ###
+
+# Docker
+*.tar
+*.images.tar
+hermes33-images.tar
+docker-compose.override.yml
+
+# Логи приложения
+*.log
+logs/
+
+# Временные файлы
+*.tmp
+*.bak
+*.swp
+*~
+
+# GitHub Desktop
+.desktop.ini
+
+# Spring Boot
+application-local.properties
+application-dev.properties
+application-prod.properties
+
+# PostgreSQL данные (локальные)
+postgres_data/
