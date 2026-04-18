@@ -1,20 +1,35 @@
 plugins {
-    id("java")
+    java
+    id("org.springframework.boot") version "3.2.0"
+    id("io.spring.dependency-management") version "1.1.7"
 }
 
-group = "io.github.moredq.hermes"
-version = "1.0-SNAPSHOT"
+group = "com.hermes"
+version = "1.0.0"
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
 
 repositories {
     mavenCentral()
 }
 
-dependencies {
-    testImplementation(platform("org.junit:junit-bom:6.0.0"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootJar> {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
-tasks.test {
+dependencies {
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.liquibase:liquibase-core")
+    implementation("org.postgresql:postgresql:42.7.3")
+    testRuntimeOnly("com.h2database:h2")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+}
+
+tasks.withType<Test> {
     useJUnitPlatform()
 }
