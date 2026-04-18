@@ -24,7 +24,7 @@ services:
     container_name: myapp-spring
     restart: unless-stopped
     ports:
-      - '8080:8080'
+      - '80:80'
     depends_on:
       postgres_db:
         condition: service_healthy
